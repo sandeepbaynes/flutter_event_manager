@@ -1,6 +1,6 @@
 name: event_manager
 description: A flutter project that helps introduce event based development to dart. Note that there are no tests to this project as the class is straight forward and simple
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/sandeepbaynes/flutter_event_manager
 
 environment:
