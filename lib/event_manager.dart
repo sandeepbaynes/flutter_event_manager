@@ -13,8 +13,7 @@ class Event {
 }
 
 /// The event manager class contains the functions to register or remove handlers and also trigger an event call
-/// A handler must have an event name. When an event is triggered, the data logged by the event needs to match the type of event of the handler
-/// All handlers of an event should have the same event type. Or else a runtime error is thrown
+/// A handler must have an event name. When an event is triggered, the data in the event needs to be cast to the specific type in the event handler
 /// Multiple handlers can be registered for any event. They are all called in the order of registration
 class EventManager {
   static final Map<String, List<void Function(Event? event)>> _eventRegistry =
@@ -46,7 +45,7 @@ class EventManager {
   }
 
   /// Triggers a specific event. No exception is thrown even if the event is not registered
-  /// Event data is optional. However, if the data is present, the type should be the same as what the handlers have registered
+  /// Event data is optional. However, if the data is present, the type should be casted in the handler before using
   static void trigger(String name, [Object? data]) {
     if (_eventRegistry.containsKey(name)) {
       for (var handler in _eventRegistry[name]!) {
