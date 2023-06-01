@@ -1,4 +1,4 @@
-library flutter_event_manager;
+library event_manager;
 
 /// Author: Sandeep Baynes
 /// This code creates a simple event handler for Flutter

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_event_manager/event_manager.dart';
+import 'package:event_manager/event_manager.dart';
 
 void main() {
   runApp(const MyApp());
