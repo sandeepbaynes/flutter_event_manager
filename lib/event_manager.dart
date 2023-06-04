@@ -4,12 +4,13 @@ library event_manager;
 /// This code creates a simple event handler for Flutter
 /// Events are registered or removed using the Event Manager class
 /// Events are triggered using the Event Manager class
-/// Event data is stored a data in an Event object
+/// Event data and source are stored a data in an Event object
 
 /// This class defines an event data type. The data within this event is generic
 class Event {
-  Object data;
-  Event({required this.data});
+  Object? data;
+  Object? source;
+  Event({this.data, this.source});
 }
 
 /// The event manager class contains the functions to register or remove handlers and also trigger an event call
@@ -46,11 +47,12 @@ class EventManager {
 
   /// Triggers a specific event. No exception is thrown even if the event is not registered
   /// Event data is optional. However, if the data is present, the type should be casted in the handler before using
-  static void trigger(String name, [Object? data]) {
+  /// The source is an optional parameter indicating a trigger source. This is useful if a handler needs to filter the event based on the source
+  static void trigger(String name, [Object? data, Object? source]) {
     if (_eventRegistry.containsKey(name)) {
       for (var handler in _eventRegistry[name]!) {
-        if (data != null) {
-          Event event = Event(data: data);
+        if (data != null || source != null) {
+          Event event = Event(data: data, source: source);
           handler(event);
         } else {
           handler(null);
